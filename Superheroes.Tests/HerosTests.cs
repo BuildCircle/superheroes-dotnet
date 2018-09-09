@@ -1,14 +1,6 @@
-using System;
 using Xunit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Superheroes;
-using System.Threading.Tasks;
-using FluentAssertions;
-using System.Net;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Superheroes.Tests
 {

@@ -6,13 +6,13 @@ namespace Superheroes
 {
     internal class CharactersProvider : ICharactersProvider
     {
-        const string charactersUri = "https://s3.eu-west-2.amazonaws.com/build-circle/characters.json";
-        HttpClient _client = new HttpClient();
+        private const string CharactersUri = "https://s3.eu-west-2.amazonaws.com/build-circle/characters.json";
+        readonly HttpClient _client = new HttpClient();
         
 
         public async Task<CharactersResponse> GetCharacters()
         {
-            var response = await _client.GetAsync(charactersUri);
+            var response = await _client.GetAsync(CharactersUri);
 
             var responseJson = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<CharactersResponse>(responseJson);

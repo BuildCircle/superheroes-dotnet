@@ -1,16 +1,14 @@
-
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
-namespace Superheroes
+namespace Superheroes.Controllers
 {
     [Route("battle")]
     public class BattleController : Controller
     {
         private readonly ICharactersProvider _charactersProvider;
-        private static CharacterResponse character1;
-        private static CharacterResponse character2;
+        private static CharacterResponse _character1;
+        private static CharacterResponse _character2;
 
         public BattleController(ICharactersProvider charactersProvider)
         {
@@ -25,20 +23,20 @@ namespace Superheroes
             {
                 if(character.Name == hero)
                 {
-                    character1 = character;
+                    _character1 = character;
                 }
                 if(character.Name == villain)
                 {
-                    character2 = character;
+                    _character2 = character;
                 }
             }
 
-            if(character1.Score > character2.Score)
+            if(_character1.Score > _character2.Score)
             {
-                return Ok(character1);
+                return Ok(_character1);
             }
 
-            return Ok(character2);
+            return Ok(_character2);
         }
     }
 }
