@@ -32,7 +32,3 @@ Run the application.
 1. Should return Joker - http://localhost:5000/battle?hero=Batman&villain=Joker
 2. Should return Superman - http://localhost:5000/battle?hero=Superman&villain=Lex%20Luthor
 
-
-## Heroes endpoint
-
-Build an endpoint that gets the characters from the same backend and returns only the heroes, in the order of most to least awesome.
