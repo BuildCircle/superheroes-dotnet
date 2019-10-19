@@ -53,5 +53,73 @@ namespace Superheroes.Tests
 
             responseObject.Value<string>("name").Should().Be("Batman");
         }
+
+        [Fact]
+        public async Task ReturnNotFoundWhenHeroNotFound()
+        {
+            var charactersProvider = new FakeCharactersProvider();
+
+            var startup = new WebHostBuilder()
+                            .UseStartup<Startup>()
+                            .ConfigureServices(x =>
+                            {
+                                x.AddSingleton<ICharactersProvider>(charactersProvider);
+                            });
+            var testServer = new TestServer(startup);
+            var client = testServer.CreateClient();
+
+            charactersProvider.FakeResponse(new CharactersResponse
+            {
+                Items = new[]
+                {
+                    new CharacterResponse
+                    {
+                        Name = "Joker",
+                        Score = 8.2,
+                        Type = "villain"
+                    }
+                }
+            });
+
+            var response = await client.GetAsync("battle?hero=Batman&villain=Joker");
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+
+        [Fact]
+        public async Task ReturnBadRequestIfTryingToFightSameCharacterType()
+        {
+            var charactersProvider = new FakeCharactersProvider();
+
+            var startup = new WebHostBuilder()
+                            .UseStartup<Startup>()
+                            .ConfigureServices(x =>
+                            {
+                                x.AddSingleton<ICharactersProvider>(charactersProvider);
+                            });
+            var testServer = new TestServer(startup);
+            var client = testServer.CreateClient();
+
+            charactersProvider.FakeResponse(new CharactersResponse
+            {
+                Items = new[]
+                {
+                    new CharacterResponse
+                    {
+                        Name = "Batman",
+                        Score = 8.3,
+                        Type = "hero"
+                    },
+                    new CharacterResponse
+                    {
+                        Name = "Robin",
+                        Score = 8.2,
+                        Type = "hero"
+                    }
+                }
+            });
+
+            var response = await client.GetAsync("battle?hero=Batman&villain=Robin");
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
     }
 }
