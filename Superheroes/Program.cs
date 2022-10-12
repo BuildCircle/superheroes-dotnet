@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Superheroes
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
