@@ -1,11 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superheroes", "Superheroes\Superheroes.csproj", "{54519F9A-22D5-4265-8F3D-854C7E431A2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Superheroes", "Superheroes\Superheroes.csproj", "{54519F9A-22D5-4265-8F3D-854C7E431A2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superheroes.Tests", "Superheroes.Tests\Superheroes.Tests.csproj", "{26F1FBE9-F3C4-4E19-BEFC-AF423B6C271E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Superheroes.Tests", "Superheroes.Tests\Superheroes.Tests.csproj", "{26F1FBE9-F3C4-4E19-BEFC-AF423B6C271E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5B96F29-796E-4650-A7D0-8100C57C3805}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		global.json = global.json
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +22,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{54519F9A-22D5-4265-8F3D-854C7E431A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +48,8 @@ Global
 		{26F1FBE9-F3C4-4E19-BEFC-AF423B6C271E}.Release|x64.Build.0 = Release|Any CPU
 		{26F1FBE9-F3C4-4E19-BEFC-AF423B6C271E}.Release|x86.ActiveCfg = Release|Any CPU
 		{26F1FBE9-F3C4-4E19-BEFC-AF423B6C271E}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
