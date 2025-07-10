@@ -13,7 +13,6 @@ Have a look at the `/battle` endpoint. How would you make this better?
 
 How would you improve the tests in `./Superheroes.Tests/BattleTests.cs`?
 
-
 ## Weaknesses
 
 Some superheroes are particularly weak against certain supervillains. If a hero has a villain specifed in their `weakness` field then they have 1 point knocked off their score when fighting that villain. This can affect the outcome of the battle.
