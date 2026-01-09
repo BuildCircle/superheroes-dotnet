@@ -1,6 +1,5 @@
 using Xunit;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Superheroes.Tests
 {
@@ -9,12 +8,8 @@ namespace Superheroes.Tests
         [Fact]
         public void CanGetHeros()
         {
-            var startup = new WebHostBuilder()
-                            .UseStartup<Startup>();
-            var testServer = new TestServer(startup);
-            var client = testServer.CreateClient();
-
-
+            var factory = new WebApplicationFactory<Program>();
+            var client = factory.CreateClient();
         }
     }
 }

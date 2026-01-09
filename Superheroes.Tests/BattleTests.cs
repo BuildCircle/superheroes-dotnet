@@ -1,6 +1,5 @@
 using Xunit;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
+using Microsoft.AspNetCore.Mvc.Testing;
 using System.Threading.Tasks;
 using FluentAssertions;
 using System.Net;
@@ -17,18 +16,25 @@ namespace Superheroes.Tests
         {
             var charactersProvider = new FakeCharactersProvider();
 
-            var startup = new WebHostBuilder()
-                            .UseStartup<Startup>()
-                            .ConfigureServices(x => 
-                            {
-                                x.AddSingleton<ICharactersProvider>(charactersProvider);
-                            });
-            var testServer = new TestServer(startup);
-            var client = testServer.CreateClient();
+            var factory = new WebApplicationFactory<Program>()
+                .WithWebHostBuilder(builder =>
+                {
+                    builder.ConfigureServices(services =>
+                    {
+                        var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(ICharactersProvider));
+                        if (descriptor != null)
+                        {
+                            services.Remove(descriptor);
+                        }
+                        services.AddSingleton<ICharactersProvider>(charactersProvider);
+                    });
+                });
+
+            var client = factory.CreateClient();
 
             charactersProvider.FakeResponse(new CharactersResponse
             {
-                Items = new []
+                Items = new[]
                 {
                     new CharacterResponse
                     {
