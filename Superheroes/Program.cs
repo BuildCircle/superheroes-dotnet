@@ -1,22 +1,19 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+using Superheroes;
 
-namespace Superheroes
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddSingleton<ICharactersProvider, CharactersProvider>();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    public static class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .ConfigureServices(x => 
-                {
-                    x.AddSingleton<ICharactersProvider, CharactersProvider>();
-                });
-    }
+    app.UseDeveloperExceptionPage();
 }
+
+app.MapControllers();
+
+app.Run();
+
+public partial class Program { }
