@@ -1,7 +1,7 @@
 using Xunit;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Threading.Tasks;
-using FluentAssertions;
+using Shouldly;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -52,12 +52,12 @@ namespace Superheroes.Tests
             });
 
             var response = await client.GetAsync("battle?hero=Batman&villain=Joker");
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.StatusCode.ShouldBe(HttpStatusCode.OK);
 
             var responseJson = await response.Content.ReadAsStringAsync();
             var responseObject = JsonConvert.DeserializeObject<JObject>(responseJson);
 
-            responseObject.Value<string>("name").Should().Be("Batman");
+            responseObject.Value<string>("name").ShouldBe("Batman");
         }
     }
 }
